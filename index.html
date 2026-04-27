@@ -4,11 +4,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>StackMon</title>
+  <title>Stackmon | Play Now</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
 
-  <!-- Twitter Player Card Metadata -->
+  <!-- Open Graph Meta Tags (Fallback for X/Twitter and other social platforms) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stackmon.fun/">
+  <meta property="og:title" content="Stackmon">
+  <meta property="og:description" content="Play Stackmon">
+  <meta property="og:image" content="https://stackmon.fun/assets/stackmon_twitter_card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="628">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter/X Card Metadata (Player Card Structure) -->
   <meta name="twitter:card" content="player">
   <meta name="twitter:site" content="@playstackmon">
   <meta name="twitter:title" content="Stackmon">
@@ -16,7 +26,7 @@
   <meta name="twitter:player" content="https://stackmon.fun/">
   <meta name="twitter:player:width" content="1280">
   <meta name="twitter:player:height" content="1280">
-  <meta name="twitter:image" content="https://stackmon.fun/TemplateData/Coverr.png">
+  <meta name="twitter:image" content="https://stackmon.fun/assets/stackmon_twitter_card.png">
 
   <style>
     /* Override/Add styles for the custom look */
@@ -67,7 +77,6 @@
 
     #unity-footer {
       display: none;
-      /* Hiding footer for a cleaner card look, optional but requested 'cool UI' usually implies clean */
     }
   </style>
 </head>
@@ -76,7 +85,7 @@
   <div id="unity-container">
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
+      <div id="unity-logo" style="width: 154px; height: 154px; background-size: contain;"></div>
       <div id="unity-progress-bar-empty">
         <div id="unity-progress-bar-full"></div>
       </div>
@@ -169,8 +178,6 @@
         document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
       }).then((unityInstance) => {
         document.querySelector("#unity-loading-bar").style.display = "none";
-        // removed fullscreen button logic since we are resizing dynamically and footer is hidden.
-        // If needed, we can add a custom overlay button, but for now cleanliness is priority.
       }).catch((message) => {
         alert(message);
       });
