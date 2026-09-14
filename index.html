@@ -177,6 +177,7 @@
       createUnityInstance(canvas, config, (progress) => {
         document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
       }).then((unityInstance) => {
+        window.unityInstance = unityInstance;
         document.querySelector("#unity-loading-bar").style.display = "none";
       }).catch((message) => {
         alert(message);
@@ -186,6 +187,8 @@
     document.body.appendChild(script);
 
   </script>
+  <!-- Pre-bundled Reown AppKit & Arc Network Web3 Integration -->
+  <script src="TemplateData/appkit.bundle.js"></script>
 </body>
 
 </html>
