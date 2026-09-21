@@ -6,14 +6,31 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Stackmon | Play Now</title>
   <script>
-    // Silence all browser console output
+    // STACKMON console banner (always prints — even in production).
     (function () {
-      var noop = function () {};
-      console.log = noop;
-      console.info = noop;
-      console.warn = noop;
-      console.debug = noop;
-      console.error = noop;
+      try {
+        console.log(
+          "%c S T A C K M O N %c\nPROTECTED BY THE STACKMON TEAM — turn back, nothing to see here. ",
+          "font-size:42px;font-weight:900;color:#f5c518;background:#141414;padding:8px 18px;border-radius:10px;",
+          "font-size:14px;font-weight:700;color:#141414;background:#f5c518;padding:6px 12px;border-radius:8px;"
+        );
+      } catch (e) {}
+    })();
+    // Silence everything else (logs, warnings, errors) unless ?debug=1 is present.
+    // Note: the browser's own network-error lines can't be muted — only ours are.
+    (function () {
+      try {
+        var qs = window.location.search || "";
+        if (qs.indexOf("debug=1") !== -1) return;
+        var noop = function () {};
+        console.log = noop;
+        console.info = noop;
+        console.warn = noop;
+        console.debug = noop;
+        console.error = noop;
+        window.addEventListener("error", function (e) { try { e.preventDefault(); } catch (x) {} return true; }, true);
+        window.addEventListener("unhandledrejection", function (e) { try { e.preventDefault(); } catch (x) {} }, true);
+      } catch (e) {}
     })();
   </script>
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
